@@ -1,8 +1,8 @@
 import React from "react";
 import "./App.scss";
+import Landing from "./pages/Landing";
 
 function App() {
-  return <h1>APP</h1>;
+  return <Landing />;
 }
-
 export default App;
