@@ -6,6 +6,5 @@
 *.html text eol=lf
 *.json text eol=lf
 *.scss text eol=lf
-.gitignore text eol=lf
 *.prettierrc.json text eol=lf
 *.husky/pre-commit text eol=lf
