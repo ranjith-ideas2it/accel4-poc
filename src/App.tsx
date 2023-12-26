@@ -1,8 +1,9 @@
 import React from "react";
 import "./App.scss";
-import Landing from "./pages/Landing";
+import { Router } from "./router/Router";
 
 function App() {
-  return <Landing />;
+  return <Router />;
 }
+
 export default App;
