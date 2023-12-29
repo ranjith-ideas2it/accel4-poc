@@ -1,18 +1,43 @@
-import { AppBar, IconButton, Toolbar, Typography } from "@mui/material";
-import React, { useState } from "react";
+import { AppBar as MuiAppBar, IconButton, Toolbar, Typography } from "@mui/material";
+import React from "react";
+import { styled } from "@mui/material/styles";
 import {
   AccountCircle as AccountIcon,
   Menu as MenuIcon,
   ArrowDropDownCircleOutlined as ArrowDownIcon,
 } from "@mui/icons-material";
+import { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
+import { INAVBAR } from "../../type/sideNavbar/SideBar";
+import { drawerWidth } from "../../constants/SideBarItems";
 
-const Header = () => {
-  const [open, setOpen] = useState(false);
-  const toggleDrawer = () => {
-    setOpen(!open);
-  };
+interface AppBarProps extends MuiAppBarProps {
+  open?: boolean;
+}
+
+const AppBar = styled(MuiAppBar, {
+  shouldForwardProp: (prop) => prop !== "open",
+})<AppBarProps>(({ theme, open }) => ({
+  zIndex: theme.zIndex.drawer + 1,
+  height: "60px",
+  transition: theme.transitions.create(["width", "margin"], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  ...(open && {
+    marginLeft: drawerWidth,
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(["width", "margin"], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  }),
+}));
+
+const Header = (props: INAVBAR) => {
+  const { open, toggleDrawer } = props;
+
   return (
-    <AppBar position="absolute">
+    <AppBar position="absolute" open={open} elevation={0}>
       <Toolbar>
         <IconButton
           edge="start"
